@@ -1,0 +1,5 @@
+<h1>Locations Curt's Visited:</h1>
+
+<% for location in @locations %>
+    <p><a href="/locations/<%= location[:id] %>"><%= location[:city_country] %></a></p>
+<% end %>

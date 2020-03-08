@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-sm-9">
+        <h2>
+            <i class="fas fa-map-pin"></i>
+            <%= @location[:city_country] %>
+        </h2>
+        <p><%= @location[:description] %></p>
+        <% for review in @reviews %>
+                <div class="media-body">
+                    <h5 class="mt-0"><%= review[:name] %></h5>
+                    <%= review[:date_visited] %>
+                    <%= review[:food] %>
+                    <%= review[:hotel] %>
+                    <%= review[:comments] %>
+                </div>
+        <% end %>
+        <p class="mt-5">
+            <a href="/locations/<%= @location[:id] %>/reviews/new" class="btn btn-primary">Leave a review!</a>
+        </p>
+    </div>
+</div>

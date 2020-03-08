@@ -1,0 +1,33 @@
+<h2>
+    <i class="fas fa-map-pin"></i>
+    <%= @location[:city_country] %>
+</h2>
+<h1>Leave a review for <%= @location[:city_country] %></h1>
+
+<form action="/locations/<%= @location[:id] %>/reviews/create">
+  <div class="form-group">
+    <label>Your name</label>
+    <input type="text" class="form-control" name="name" placeholder="Who are you?">
+  </div>
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" class="form-control" placeholder="name@example.com" name="email">
+  </div>
+  <div class="form-group">
+    <label>Date Visited</label>
+    <input type="text" class="form-control" placeholder="When did you go?" name="date_visited">
+  </div>
+  <div class="form-group">
+    <label>Rate the food</label>
+    <input type="text" class="form-control" placeholder="How many stars (of 5)?" name="food">
+  </div>
+  <div class="form-group">
+    <label>Where did you stay?</label>
+    <input type="text" class="form-control" placeholder="Hotel name?" name="hotel">
+  </div>
+  <div class="form-group">
+    <label>Comments</label>
+    <textarea class="form-control" rows="3" placeholder="What did you think of the place?  Did you have your head smashed by an fiction novel zombie?" name="comments"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

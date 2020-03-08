@@ -5,31 +5,32 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
-DB.create_table! :events do
+DB.create_table! :locations do
   primary_key :id
-  String :title
+  String :city_country
   String :description, text: true
-  String :date
-  String :location
 end
-DB.create_table! :rsvps do
+DB.create_table! :reviews do
   primary_key :id
-  foreign_key :event_id
-  Boolean :going
+  foreign_key :location_id
   String :name
   String :email
+  String :date_visited
+  String :food
+  String :hotel
   String :comments, text: true
 end
 
 # Insert initial (seed) data
-events_table = DB.from(:events)
+locations_table = DB.from(:locations)
 
-events_table.insert(title: "Bacon Burger Taco Fest", 
-                    description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
-                    date: "June 21",
-                    location: "Kellogg Global Hub")
+locations_table.insert(city_country: "Dubrovnik, Croatia", 
+                    description: "Historically Ragusa, Dubrovnik is a city on the Adriatic Sea in southern Croatia. It is one of the most prominent tourist destinations in the Mediterranean Sea, a seaport and the centre of Dubrovnik-Neretva County. Its total population is 42,615 (census 2011). In 1979, the city of Dubrovnik joined the UNESCO list of World Heritage sites.
+")
 
-events_table.insert(title: "Kaleapolooza", 
-                    description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
-                    date: "July 4",
-                    location: "Nowhere")
+locations_table.insert(city_country: "Zermatt, Switzerland", 
+                    description: "In southern Switzerland’s Valais canton, is a mountain resort renowned for skiing, climbing and hiking. The town, at an elevation of around 1,600m, lies below the iconic, pyramid-shaped Matterhorn peak. Its main street, Bahnhofstrasse is lined with boutique shops, hotels and restaurants, and also has a lively après-ski scene. There are public outdoor rinks for ice-skating and curling.")
+                  
+locations_table.insert(city_country: "Munich, Germany", 
+                    description: "Munich, Bavaria’s capital, is home to centuries-old buildings and numerous museums. The city is known for its annual Oktoberfest celebration and its beer halls, including the famed Hofbräuhaus, founded in 1589. In the Altstadt (Old Town), central Marienplatz square contains landmarks such as Neo-Gothic Neues Rathaus (town hall), with a popular glockenspiel show that chimes and reenacts stories from the 16th century.")
+
