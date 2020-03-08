@@ -13,12 +13,18 @@ end
 DB.create_table! :reviews do
   primary_key :id
   foreign_key :location_id
-  String :name
-  String :email
+  foreign_key :user_id
   String :date_visited
   String :food
   String :hotel
   String :comments, text: true
+end
+
+DB.create_table! :users do
+  primary_key :id
+  String :name
+  String :email
+  String :password
 end
 
 # Insert initial (seed) data

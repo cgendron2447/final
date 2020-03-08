@@ -7,7 +7,7 @@
         <p><%= @location[:description] %></p>
         <% for review in @reviews %>
                 <div class="media-body">
-                    <h5 class="mt-0"><%= review[:name] %></h5>
+                    #<h5 class="mt-0"> <%= review[@users_table.where(id: review[:user_id].to_a[0][:name] %></h5>
                     <%= review[:date_visited] %>
                     <%= review[:food] %>
                     <%= review[:hotel] %>
