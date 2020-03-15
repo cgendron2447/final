@@ -105,6 +105,7 @@ post "/logins/create" do
     if @user
         if BCrypt::Password.new(@user[:password]) == password
             session["user_id"] = @user[:id]
+            @current_user = @user
             view "create_login"
         else 
             view "create_login_failed"
