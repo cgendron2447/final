@@ -28,6 +28,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
+            <% if @current_user %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/"></a>
+                </li>
+            <% else %>
                 <li class="nav-item">
                     <a class="nav-link" href="/users/new">Sign Up</a>
                 </li>
@@ -35,6 +40,7 @@
                     <a class="nav-link" href="/logins/new">Sign In</a>
                 </li>
             </ul>
+            <% end %>
             <% if @current_user %>
                 <ul class="navbar-nav ml-auto">
                     <li class="navbar-text">
