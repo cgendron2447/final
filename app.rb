@@ -1,11 +1,12 @@
 # Set up for the application and database. DO NOT CHANGE. #############################
 require "sinatra"                                                                     #
 require "sinatra/cookies"                                                             #
-require "sinatra/reloader" if development?                                            #
+require "sinatra/reloader" if development?  
+require "geocoder"                                          #
 require "sequel"                                                                      #
 require "logger"                                                                      #
-require "twilio-ruby"                                                                 #
-require "bcrypt"                                                                      #
+require "bcrypt"  
+require "twilio-ruby"                                                                 #                                                  #
 connection_string = ENV['DATABASE_URL'] || "sqlite://#{Dir.pwd}/development.sqlite3"  #
 DB ||= Sequel.connect(connection_string)                                              #
 DB.loggers << Logger.new($stdout) unless DB.loggers.size > 0                          #
@@ -39,6 +40,8 @@ get "/locations/:id" do
     @reviews = reviews_table.where(location_id: @location[:id]).to_a
     @review_count = reviews_table.where(location_id: @location[:id]).count
     @users_table = users_table
+    results = Geocoder.search(@location[:description])
+    @lat_long = results.first.coordinates
     view "location_review"
 end
 
