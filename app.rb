@@ -42,6 +42,8 @@ get "/locations/:id" do
     @users_table = users_table
     @results = Geocoder.search(@location[:city_country])
     @lat_long = @results.first.coordinates
+    @lat = @lat_long[0]
+    @long = @lat_long[1]
     view "location_review"
 end
 
