@@ -2,7 +2,7 @@
 require "sinatra"                                                                     #
 require "sinatra/cookies"                                                             #
 require "sinatra/reloader" if development?  
-require "geocoder"                                          #
+require "geocoder"
 require "sequel"                                                                      #
 require "logger"                                                                      #
 require "bcrypt"  
@@ -40,8 +40,8 @@ get "/locations/:id" do
     @reviews = reviews_table.where(location_id: @location[:id]).to_a
     @review_count = reviews_table.where(location_id: @location[:id]).count
     @users_table = users_table
-    results = Geocoder.search(@location[:description])
-    @lat_long = results.first.coordinates
+    @results = Geocoder.search(@location[:city_country])
+    @lat_long = @results.first.coordinates
     view "location_review"
 end
 
